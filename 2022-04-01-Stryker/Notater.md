@@ -1,16 +1,24 @@
 # Mutantjakt med Stryker
 
 # Introduksjon
-En relativt vanlig del av livet som utvikler er å skrive enhetstester som tester koden vår slik at vi 1) kan være sikre på at logikken som vi har implementert oppfører seg som tenkt, og 2) at endringer som blir gjort i koden på et senere tidspunkt ikke introduserer logiske feil som ellers ikkje ville blitt oppdaget. 
+Først litt generelt om enhetstesting.
 
-Bruk av enhetstesting har en tett relasjon til det som kalles kvalitetsattributter for programvare. Jeg tenker da på attributter som for eksempel korrekthet, robusthet, sikkerhet, og slike ting.
+En relativt vanlig del av livet som utvikler er å skrive enhetstester som tester koden vår slik at vi 1) kan være sikre på at logikken som vi har implementert oppfører seg som tenkt, og 2) at endringer som blir gjort i koden på et senere tidspunkt ikke introduserer logiske feil som ellers ikke ville blitt oppdaget. 
 
-1. En vesentlig utfordring ved enhetstesting er å skrive gode tester. Det vil si effektive tester som ikke bare dekker happy paths men også edge cases.
-1. Det finnes flere måter å måle kvaliteten på tester. En relativt vanlig metrikk er det som kalles "code coverage". Det vil si å gjøre en fysisk måling av hvor mye av koden som blir aktivert av enhetstester. 
-1. Vi skal se litt på code coverage idag, og hvis alt går etter planen så vil vi få en håndfast demonstrasjon av hvorfor code coverage kan gi et falskt inntrykk av hvor godt testene dine faktisk dekker logikken i koden din.
+Enhetstesting har en tett relasjon til det som kalles kvalitetsattributter for programvare, og blir gjerne brukt som et verktøy for å oppnå et ønsket nivå av korrekthet, robusthet, sikkerhet, og slike ting.
+
+1. En utfordring ved enhetstesting er å skrive gode tester. Det vil si effektive tester som ikke bare dekker happy paths men også edge cases.
+1. En metrikk som brukes noen steder er det som kalles "code coverage" eller kodedekning. Det vil si å gjøre en måling av hvor mye av koden som blir aktivert av enhetstester. Forskjellige kriterier:
+    * Function coverage
+    * Statement coverage
+    * Edge coverage
+    * Branch coverage
+    * Condition coverage
+1. Begrep som brukes litt om hverandre: Kodedekning vs. testdekning
+1. Vi skal se litt på kodedekning idag, og hvis alt går etter planen så vil vi få en håndfast demonstrasjon av hvorfor god kodedekning kan gi et falskt inntrykk av hvor godt testene dine faktisk tester logikken i koden din.
 
 # Demo: Prosjekt og tester
-1. Åpne solution og vis kalkulatoren + testene
+1. Åpne solution  (bruk VS Preview fordi .net 7) og vis kalkulatoren + testene
 1. Kjør testene og vis at alle er grønne
 
 # Demo: Code coverage
@@ -25,16 +33,16 @@ Bruk av enhetstesting har en tett relasjon til det som kalles kvalitetsattributt
     1. Støtter Javascript, C# og Scala
 1. Åpne en terminal og gå til mappen med testprosjektet.
 ```cmd
-dotnet new tool-manifest
+dotnet new tool-manifest --force
 dotnet tool install dotnet-stryker
-dotnet stryker -o
+dotnet stryker
 ```
 
 1. Stryker genererte 12 mutanter
 1. Testene våre tok livet av 7 mutanter, men 5 overlevde. 
 1. Vi ønsker ikke at mutanter overlever.
-Stryker genererer en rapport som vi kan se nærmere på.
-
+1. Åpne rapporten og se kjapt over mutantene
+1. Nå skal vi forbedre testene våre slik at vi får tatt livet av alle mutantene
 ## Subtrahering: Block removal
 Block removal betyr at Stryker fjernet koden, men testen feilet ikke.
 1. Gå til testkoden og endre Subtraher() til `return 0;`
