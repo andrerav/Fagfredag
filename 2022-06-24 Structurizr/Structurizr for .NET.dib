@@ -1,0 +1,76 @@
+#!markdown
+
+# Structurizr for .NET - C4-modellering med C#
+
+#!csharp
+
+#r "nuget: Structurizr.Core, 1.0.0"
+
+#!markdown
+
+**Opprette workspace og modell**
+
+#!csharp
+
+using Structurizr;
+Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
+Model model = workspace.Model;
+
+#!markdown
+
+**Legge til elementer i modellen**
+
+#!csharp
+
+Person user = model.AddPerson("User", "A user of my software system.");
+SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", "My software system.");
+user.Uses(softwareSystem, "Uses");
+
+#!markdown
+
+**Legge til view**
+
+#!csharp
+
+ViewSet viewSet = workspace.Views;
+SystemContextView contextView = viewSet.CreateSystemContextView(softwareSystem, "SystemContext", "An example of a System Context diagram.");
+contextView.AddAllElements();
+
+#!csharp
+
+Styles styles = viewSet.Configuration.Styles;
+styles.Add(new ElementStyle(Tags.SoftwareSystem) { Background = "#1168bd", Color = "#ffffff" });
+styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#ffffff", Shape = Shape.Person });
+
+#!markdown
+
+## Eksport til JSON
+
+#!csharp
+
+#r "nuget: Structurizr.Client, 1.0.0"
+using Structurizr.IO.Json;
+using System.IO;
+StringWriter stringWriter = new();
+JsonWriter jsonWriter = new(indentOutput: true);
+jsonWriter.Write(workspace, stringWriter);
+Console.WriteLine(stringWriter.ToString());
+
+#!markdown
+
+## Eksport til PlantUML
+
+#!csharp
+
+#r "nuget: Structurizr.PlantUML, 0.9.3"
+using Structurizr.IO.PlantUML;
+using System.IO;
+
+StringWriter stringWriter = new();
+PlantUMLWriter plantUMLWriter = new();
+plantUMLWriter.Write(workspace, stringWriter);
+// Console.WriteLine(stringWriter.ToString());
+File.WriteAllText(Path.Join(Environment.CurrentDirectory, 
+                                "output", 
+                                "StructurizrModel.puml"), 
+                                    stringWriter.ToString());

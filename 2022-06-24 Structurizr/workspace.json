@@ -1,0 +1,328 @@
+{
+  "model": {
+    "people": [
+      {
+        "location": "Unspecified",
+        "name": "User",
+        "description": "A user of my software system.",
+        "relationships": [
+          {
+            "description": "Uses",
+            "sourceId": "1",
+            "destinationId": "5",
+            "technology": "HTTPS",
+            "id": "8",
+            "tags": "Relationship",
+            "properties": {},
+            "perspectives": []
+          },
+          {
+            "description": "Uses",
+            "sourceId": "1",
+            "destinationId": "3",
+            "technology": "HTTPS",
+            "id": "10",
+            "tags": "Relationship",
+            "properties": {},
+            "perspectives": []
+          },
+          {
+            "description": "Uses",
+            "sourceId": "1",
+            "destinationId": "2",
+            "technology": "HTTPS",
+            "id": "11",
+            "tags": "Relationship",
+            "properties": {},
+            "perspectives": []
+          }
+        ],
+        "id": "1",
+        "tags": "Element,Person",
+        "properties": {},
+        "perspectives": []
+      }
+    ],
+    "softwareSystems": [
+      {
+        "location": "Unspecified",
+        "containers": [
+          {
+            "technology": "C#",
+            "components": [
+              {
+                "technology": "ASP.NET MVC",
+                "size": 0,
+                "code": [
+                  {
+                    "name": "HtmlController",
+                    "type": "Lk.Fagfredag.Demo.App.HtmlController, Lk.Fagfredag.Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "role": "Primary",
+                    "language": "C#",
+                    "visibility": "public",
+                    "size": 0
+                  }
+                ],
+                "name": "HtmlController",
+                "description": "Serves HTML pages to users.",
+                "relationships": [
+                  {
+                    "description": "Gets data using",
+                    "sourceId": "5",
+                    "destinationId": "6",
+                    "technology": "",
+                    "id": "7",
+                    "tags": "Relationship",
+                    "properties": {},
+                    "perspectives": []
+                  }
+                ],
+                "id": "5",
+                "tags": "Element,Component",
+                "properties": {},
+                "perspectives": []
+              },
+              {
+                "technology": "C#",
+                "size": 0,
+                "code": [
+                  {
+                    "name": "IRepository",
+                    "type": "Lk.Fagfredag.Demo.App.IRepository, Lk.Fagfredag.Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "role": "Primary",
+                    "language": "C#",
+                    "category": "interface",
+                    "visibility": "public",
+                    "size": 0
+                  },
+                  {
+                    "name": "EfRepository",
+                    "type": "Lk.Fagfredag.Demo.App.EfRepository, Lk.Fagfredag.Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "role": "Supporting",
+                    "description": "Implementation",
+                    "language": "C#",
+                    "visibility": "public",
+                    "size": 0
+                  }
+                ],
+                "name": "IRepository",
+                "description": "Provides access to data stored in the database.",
+                "relationships": [
+                  {
+                    "description": "Reads from",
+                    "sourceId": "6",
+                    "destinationId": "4",
+                    "technology": "Entity Framework",
+                    "id": "9",
+                    "tags": "Relationship",
+                    "properties": {},
+                    "perspectives": []
+                  }
+                ],
+                "id": "6",
+                "tags": "Element,Component",
+                "properties": {},
+                "perspectives": []
+              }
+            ],
+            "name": "Web Application",
+            "description": "Provides users with information.",
+            "relationships": [
+              {
+                "description": "Reads from",
+                "sourceId": "3",
+                "destinationId": "4",
+                "technology": "Entity Framework",
+                "id": "12",
+                "tags": "Relationship",
+                "properties": {},
+                "perspectives": []
+              }
+            ],
+            "id": "3",
+            "tags": "Element,Container",
+            "properties": {},
+            "perspectives": []
+          },
+          {
+            "technology": "Relational database schema",
+            "components": [],
+            "name": "Database",
+            "description": "Stores information.",
+            "relationships": [],
+            "id": "4",
+            "tags": "Element,Container,Database",
+            "properties": {},
+            "perspectives": []
+          }
+        ],
+        "name": "Software System",
+        "description": "My software system.",
+        "relationships": [],
+        "id": "2",
+        "tags": "Element,Software System",
+        "properties": {},
+        "perspectives": []
+      }
+    ],
+    "deploymentNodes": []
+  },
+  "views": {
+    "systemLandscapeViews": [],
+    "systemContextViews": [
+      {
+        "animations": [],
+        "key": "SystemContext",
+        "softwareSystemId": "2",
+        "description": "An example of a System Context diagram.",
+        "elements": [
+          {
+            "id": "2",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "1",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "relationships": [
+          {
+            "id": "11",
+            "vertices": []
+          }
+        ]
+      }
+    ],
+    "containerViews": [
+      {
+        "animations": [],
+        "key": "Containers",
+        "softwareSystemId": "2",
+        "description": "The container diagram from my software system.",
+        "elements": [
+          {
+            "id": "1",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "3",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "4",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "relationships": [
+          {
+            "id": "10",
+            "vertices": []
+          },
+          {
+            "id": "12",
+            "vertices": []
+          }
+        ]
+      }
+    ],
+    "componentViews": [
+      {
+        "containerId": "3",
+        "animations": [],
+        "key": "Components",
+        "softwareSystemId": "2",
+        "description": "The component diagram for the web application.",
+        "elements": [
+          {
+            "id": "1",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "4",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "5",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "6",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "relationships": [
+          {
+            "id": "8",
+            "vertices": []
+          },
+          {
+            "id": "9",
+            "vertices": []
+          },
+          {
+            "id": "7",
+            "vertices": []
+          }
+        ]
+      }
+    ],
+    "dynamicViews": [],
+    "deploymentViews": [],
+    "filteredViews": [],
+    "configuration": {
+      "styles": {
+        "relationships": [],
+        "elements": [
+          {
+            "tag": "Element",
+            "color": "#ffffff"
+          },
+          {
+            "tag": "Software System",
+            "background": "#1168bd"
+          },
+          {
+            "tag": "Container",
+            "background": "#438dd5"
+          },
+          {
+            "tag": "Component",
+            "background": "#85bbf0",
+            "color": "#000000"
+          },
+          {
+            "tag": "Person",
+            "background": "#08427b",
+            "shape": "Person"
+          },
+          {
+            "tag": "Database",
+            "shape": "Cylinder"
+          }
+        ]
+      },
+      "branding": {},
+      "terminology": {},
+      "viewSortOrder": "Default"
+    }
+  },
+  "documentation": {
+    "sections": [],
+    "decisions": [],
+    "images": []
+  },
+  "name": "Structurizr for .NET Annotations",
+  "description": "This is a model of my software system.",
+  "configuration": {
+    "users": []
+  }
+}
